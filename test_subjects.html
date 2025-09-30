@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Subjects Functionality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">Test Subjects Functionality</h1>
+        
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Subjects Grid Test</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="subjects-grid">
+                <!-- Subjects will be loaded here -->
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Topics Grid Test</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="topics-grid">
+                <!-- Topics will be loaded here -->
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-2-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Debug Console</h2>
+            <div class="space-y-2">
+                <button onclick="testLoadSubjects()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors">
+                    Test Load Subjects
+                </button>
+                <button onclick="testLoadTopics()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors">
+                    Test Load Topics (Math)
+                </button>
+                <button onclick="clearConsole()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
+                    Clear Console
+                </button>
+            </div>
+            <div id="console-output" class="mt-4 p-4 bg-gray-100 rounded-lg font-mono text-sm max-h-40 overflow-y-auto">
+                <!-- Console output will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Copy the relevant functions from app.js
+        let currentSubject = null;
+        
+        function log(message) {
+            const console = document.getElementById('console-output');
+            const timestamp = new Date().toLocaleTimeString();
+            console.innerHTML += `[${timestamp}] ${message}\n`;
+            console.scrollTop = console.scrollHeight;
+        }
+        
+        function clearConsole() {
+            document.getElementById('console-output').innerHTML = '';
+        }
+        
+        async function testLoadSubjects() {
+            log('Testing loadSubjects function...');
+            try {
+                const response = await fetch('/api/subjects');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const subjects = await response.json();
+                log(`Fetched ${subjects.length} subjects from API`);
+                
+                const subjectsGrid = document.getElementById('subjects-grid');
+                subjectsGrid.innerHTML = '';
+                
+                subjects.forEach(subject => {
+                    const subjectCard = document.createElement('div');
+                    subjectCard.className = 'bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-xl p-6 cursor-pointer hover:shadow-lg transition-all transform hover:scale-105';
+                    subjectCard.innerHTML = `
+                        <div class="text-center">
+                            <i class="fas fa-book text-4xl mb-4"></i>
+                            <h4 class="text-xl font-bold mb-2">${subject.name}</h4>
+                            <p class="text-blue-100 text-sm">${subject.description}</p>
+                        </div>
+                    `;
+                    
+                    subjectCard.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        log(`Subject clicked: ${subject.name} (ID: ${subject.id})`);
+                        testLoadTopics(subject);
+                    });
+                    
+                    subjectsGrid.appendChild(subjectCard);
+                });
+                
+                log('Subjects loaded successfully!');
+                
+            } catch (error) {
+                log(`Error: ${error.message}`);
+                console.error('Error loading subjects:', error);
+            }
+        }
+        
+        async function testLoadTopics(subject = null) {
+            if (!subject) {
+                // Default to Mathematics
+                subject = { id: 1, name: 'Mathematics' };
+            }
+            
+            log(`Testing loadTopics for: ${subject.name} (ID: ${subject.id})`);
+            currentSubject = subject;
+            
+            try {
+                const response = await fetch(`/api/subjects/${subject.id}/topics`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const topics = await response.json();
+                log(`Fetched ${topics.length} topics from API`);
+                
+                const topicsGrid = document.getElementById('topics-grid');
+                topicsGrid.innerHTML = '';
+                
+                if (topics.length === 0) {
+                    topicsGrid.innerHTML = `
+                        <div class="col-span-full text-center py-8 text-gray-500">
+                            <i class="fas fa-list text-4xl mb-4"></i>
+                            <p>No topics available for ${subject.name}.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                topics.forEach(topic => {
+                    const topicCard = document.createElement('div');
+                    topicCard.className = 'bg-white border-2 border-gray-200 rounded-xl p-6 cursor-pointer hover:border-blue-500 hover:shadow-lg transition-all';
+                    topicCard.innerHTML = `
+                        <div class="text-center">
+                            <div class="text-3xl mb-3">${getTopicEmoji(topic.name)}</div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-2">${topic.name}</h4>
+                            <p class="text-gray-600 text-sm mb-3">${topic.description}</p>
+                            <div class="flex justify-center space-x-2">
+                                ${Array.from({length: topic.difficulty_level}, (_, i) => 
+                                    '<i class="fas fa-star text-yellow-400"></i>'
+                                ).join('')}
+                            </div>
+                        </div>
+                    `;
+                    
+                    topicCard.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        log(`Topic clicked: ${topic.name} (ID: ${topic.id})`);
+                    });
+                    
+                    topicsGrid.appendChild(topicCard);
+                });
+                
+                log('Topics loaded successfully!');
+                
+            } catch (error) {
+                log(`Error: ${error.message}`);
+                console.error('Error loading topics:', error);
+            }
+        }
+        
+        function getTopicEmoji(topicName) {
+            const emojis = {
+                'Algebra Basics': '🔢',
+                'Linear Equations': '📈',
+                'Quadratic Functions': '📊',
+                'Geometry': '📐',
+                'Statistics': '📊'
+            };
+            return emojis[topicName] || '📚';
+        }
+        
+        // Auto-load subjects on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            log('Page loaded - starting test...');
+            testLoadSubjects();
+        });
+    </script>
+</body>
+</html>
