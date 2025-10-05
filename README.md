@@ -1,189 +1,206 @@
-# K12 AI Tutor - 智能学习辅导助教
+# K12 AI Tutor - Intelligent Learning Assistant
 
-一个专为K12学生设计的AI辅导助教系统，结合游戏化学习、个性化练习和考试辅导功能。
+An AI-powered tutoring system designed for K12 students, integrating gamified learning, personalized practice, and exam preparation features.
 
-## 🎯 核心功能
+## 🎯 Core Features
 
-### 1. 错题诊断与讲解
-- 学生上传题目或输入错误答案
-- AI引导式复盘思路分析
-- 逐步讲解，使用类比和图示
-- 适合小学生到高中生的理解水平
+### 1. Error Diagnosis & Explanation
+- Students can upload questions or input incorrect answers
+- AI guides reflection and thinking process
+- Step-by-step explanations with analogies and visual aids
+- Tailored for comprehension levels from elementary to high school
 
-### 2. 个性化练习生成
-- 根据错题类型自动生成3-5道相似练习题
-- 难度梯度递增，包含挑战题
-- 即时反馈和鼓励机制
+### 2. Personalized Practice Generation
+- Automatically generates 3–5 similar practice problems based on error type
+- Gradually increasing difficulty, including challenge questions
+- Instant feedback and encouragement system
 
-### 3. 游戏化学习系统
-- 答题获得积分、金币和能量值
-- 学习宠物系统（可升级、购买物品）
-- 虚拟学习世界建造
-- 持续学习动力机制
+### 3. Gamified Learning System
+- Earn points, coins, and energy by solving questions
+- Learning pet system (level up, buy items)
+- Virtual learning world building
+- Continuous motivation mechanism
 
-### 4. 情感化AI互动
-- 耐心幽默的学伴风格
-- 积极强化和鼓励反馈
-- 轻松语言，偶尔小玩笑
-- 成长型反馈系统
+### 4. Emotional AI Interaction
+- Patient and humorous learning companion tone
+- Positive reinforcement and encouragement
+- Casual, friendly language with light humor
+- Growth-oriented feedback system
 
-### 5. 美国K12考试辅导
-- **SAT/ACT/AP考试准备**
-- 成绩目标设定和个性化学习路径
-- 模拟练习和自适应测试
-- 错题本和薄弱点分析
-- 真实考场模拟体验
+### 5. U.S. K12 Exam Preparation
+- SAT / ACT / AP test prep
+- Score goal setting and personalized learning paths
+- Practice simulations and adaptive testing
+- Mistake log and weak point analysis
+- Real exam simulation experience
 
-## 🚀 快速开始
+---
 
-### 安装依赖
+## 🚀 Quick Start
+
+### Install dependencies
 ```bash
 npm install
 ```
 
-### 设置数据库
+### Setup database
 ```bash
 npm run setup-db
 ```
 
-### 启动服务器
+### Start the server
 ```bash
 npm start
 ```
 
-### 访问应用
-打开浏览器访问：http://localhost:3000
-
-## 👤 演示账户
-
-- **用户名**: demo_student
-- **密码**: demo123
-
-## 📚 系统架构
-
-### 后端技术栈
-- **Node.js + Express**: 服务器框架
-- **SQLite**: 数据库存储
-- **JWT**: 用户认证
-- **bcryptjs**: 密码加密
-
-### 前端技术栈
-- **HTML5 + CSS3**: 响应式界面
-- **Tailwind CSS**: 现代化样式
-- **Vanilla JavaScript**: 交互逻辑
-- **Chart.js**: 数据可视化
-
-### 数据库结构
-- **students**: 学生信息和积分系统
-- **subjects/topics**: 学科和主题分类
-- **questions**: 题目库（支持多种题型）
-- **student_attempts**: 答题记录和错题分析
-- **study_sessions**: 学习会话跟踪
-- **learning_goals**: 学习目标管理
-- **pet_items**: 宠物商店系统
-
-## 🎮 主要功能模块
-
-### 1. 用户认证系统
-- 注册/登录功能
-- 年级选择
-- 用户档案管理
-
-### 2. 练习系统
-- 学科选择（数学、英语、科学、社会研究）
-- 主题分类和难度等级
-- 多种题型支持（选择题、填空题、简答题）
-- 实时计时和提示功能
-
-### 3. 考试模拟
-- SAT/ACT/AP考试题型
-- 限时答题模式
-- 成绩分析和反馈
-- 错题回顾功能
-
-### 4. 学习目标管理
-- 目标设定（考试分数、主题掌握、练习量）
-- 进度跟踪
-- 完成度可视化
-
-### 5. 宠物系统
-- 学习宠物养成
-- 积分购买宠物物品
-- 宠物升级和进化
-- 学习动力激励
-
-## 🧠 AI辅导特色
-
-### 智能反馈系统
-- **成功反馈**: "太棒了！你完全理解了这个概念！🚀"
-- **帮助反馈**: "别灰心！让我们一起来看看哪里需要改进 🤔"
-- **成长反馈**: "这道题说明你在代数思维上又前进了一步"
-
-### 个性化学习路径
-- 根据错题类型推荐练习
-- 自适应难度调整
-- 跨学科联想学习
-- 学习习惯分析
-
-### 错题溯源分析
-- 识别错误类型（公式记忆、粗心大意、概念理解）
-- 针对性练习推荐
-- 知识点薄弱环节标记
-
-## 📊 学习数据追踪
-
-- 答题准确率统计
-- 学习时间分析
-- 积分和等级系统
-- 学习进度可视化图表
-- 错题本自动生成
-
-## 🎯 适用场景
-
-- **日常作业辅导**: 错题分析和练习生成
-- **考试准备**: SAT/ACT/AP等标准化考试
-- **知识点巩固**: 个性化练习和复习
-- **学习习惯培养**: 游戏化激励机制
-- **家长监督**: 学习进度和成绩追踪
-
-## 🔧 开发说明
-
-### 项目结构
-```
-k12-ai-tutor/
-├── server.js              # 主服务器文件
-├── setup_database.js      # 数据库初始化
-├── package.json           # 项目配置
-├── public/
-│   ├── index.html         # 主页面
-│   └── app.js            # 前端逻辑
-└── k12_tutor.db          # SQLite数据库
-```
-
-### API端点
-- `POST /api/auth/register` - 用户注册
-- `POST /api/auth/login` - 用户登录
-- `GET /api/subjects` - 获取学科列表
-- `GET /api/topics/:id/questions` - 获取题目
-- `POST /api/questions/:id/answer` - 提交答案
-- `GET /api/exams/:type/questions` - 考试题目
-- `POST /api/learning-goals` - 设置学习目标
-- `GET /api/pet/items` - 宠物商店
-
-## 🌟 未来扩展
-
-- [ ] 更多学科支持
-- [ ] 语音交互功能
-- [ ] 移动端应用
-- [ ] 家长监控面板
-- [ ] 教师管理后台
-- [ ] 更多游戏化元素
-- [ ] AI对话功能增强
-
-## 📝 许可证
-
-MIT License
+### Access the app
+Open your browser and visit: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-**让学习变得有趣，让AI成为你的最佳学习伙伴！** 🎓✨
+## 👤 Demo Account
+
+- **Username:** demo_student  
+- **Password:** demo123
+
+---
+
+## 📚 System Architecture
+
+### Backend Stack
+- **Node.js + Express:** Server framework  
+- **SQLite:** Database storage  
+- **JWT:** User authentication  
+- **bcryptjs:** Password encryption  
+
+### Frontend Stack
+- **HTML5 + CSS3:** Responsive interface  
+- **Tailwind CSS:** Modern styling framework  
+- **Vanilla JavaScript:** Core interactivity  
+- **Chart.js:** Data visualization  
+
+### Database Schema
+- `students`: Student info & points system  
+- `subjects/topics`: Subject and topic categorization  
+- `questions`: Question bank (multiple types supported)  
+- `student_attempts`: Answer records and error tracking  
+- `study_sessions`: Session tracking  
+- `learning_goals`: Goal management  
+- `pet_items`: Pet store system  
+
+---
+
+## 🎮 Main Feature Modules
+
+### 1. User Authentication
+- Register / Login functionality  
+- Grade selection  
+- Profile management  
+
+### 2. Practice System
+- Subject selection (Math, English, Science, Social Studies)  
+- Topic categorization and difficulty levels  
+- Supports multiple question types (MCQ, fill-in-the-blank, short answer)  
+- Real-time timer and hints  
+
+### 3. Exam Simulation
+- SAT / ACT / AP question types  
+- Timed mode  
+- Score analysis and feedback  
+- Mistake review function  
+
+### 4. Learning Goal Management
+- Set goals (scores, mastery, practice volume)  
+- Progress tracking  
+- Completion visualization  
+
+### 5. Pet System
+- Learning pet raising system  
+- Purchase pet items using points  
+- Pet level-up and evolution  
+- Motivation through gamification  
+
+---
+
+## 🧠 AI Tutoring Features
+
+### Intelligent Feedback System
+- **Success feedback:** “Excellent! You’ve mastered this concept! 🚀”  
+- **Assistance feedback:** “Don’t worry! Let’s analyze where it went wrong 🤔”  
+- **Growth feedback:** “This problem shows you’ve improved your algebraic reasoning!”  
+
+### Personalized Learning Path
+- Recommended practice based on mistakes  
+- Adaptive difficulty adjustment  
+- Cross-disciplinary learning suggestions  
+
+### Learning Habit Analysis
+- Mistake source analysis  
+- Error type identification (formula memory, carelessness, conceptual gap)  
+- Targeted practice recommendations  
+- Weak topic tagging  
+
+---
+
+## 📊 Learning Data Tracking
+
+- Accuracy statistics  
+- Study time analysis  
+- Points and level system  
+- Progress visualization charts  
+- Automatic mistake log generation  
+
+---
+
+## 🎯 Use Cases
+
+- **Daily Homework Help:** Error analysis and practice generation  
+- **Exam Preparation:** SAT / ACT / AP practice and review  
+- **Concept Reinforcement:** Personalized practice and revision  
+- **Study Habit Formation:** Gamified motivation system  
+- **Parental Supervision:** Progress and performance tracking  
+
+---
+
+## 🔧 Development Notes
+
+### Project Structure
+```
+k12-ai-tutor/
+├── server.js              # Main server file
+├── setup_database.js      # Database initialization
+├── package.json           # Project configuration
+├── public/
+│   ├── index.html         # Main page
+│   └── app.js             # Frontend logic
+└── k12_tutor.db           # SQLite database
+```
+
+### API Endpoints
+- `POST /api/auth/register` – User registration  
+- `POST /api/auth/login` – User login  
+- `GET /api/subjects` – Retrieve subject list  
+- `GET /api/topics/:id/questions` – Fetch questions  
+- `POST /api/questions/:id/answer` – Submit answer  
+- `GET /api/exams/:type/questions` – Retrieve exam questions  
+- `POST /api/learning-goals` – Set learning goals  
+- `GET /api/pet/items` – Get pet store items  
+
+---
+
+## 🌟 Future Expansion
+
+- More subject support  
+- Voice interaction capability  
+- Mobile app version  
+- Parent dashboard  
+- Teacher admin console  
+- Enhanced gamification  
+- Advanced AI dialogue system  
+
+---
+
+## 📝 License
+**MIT License**
+
+> Making learning fun — and AI your best study partner! 🎓✨
